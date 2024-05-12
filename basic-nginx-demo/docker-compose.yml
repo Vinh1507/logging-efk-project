@@ -1,0 +1,14 @@
+version: "3"
+services:
+  fluentd:
+    image: fluent/fluentd:v1.12.0-debian-1.0
+    container_name: fluentd
+    user: root
+    volumes:
+    - ./files:/fluentd/log/files # example log from a file
+    - ./config/fluent.conf:/fluentd/etc/fluent.conf
+    - ./logs:/output/
+    ports:
+      - "24224:24224"
+    logging:
+      driver: "local"
